@@ -6,11 +6,12 @@ import numpy as np
 # Page Configuration
 st.set_page_config(page_title="Tomato Health AI", layout="centered")
 
-# 1. Load the Model
+# 1. Load the Model (Updated for Compatibility)
 @st.cache_resource
 def load_my_model():
-    # Maqaan kun file GitHub irratti jiruun tokko ta'uu qaba
-    return tf.keras.models.load_model('tomato_disease_modelv2.h5')
+    model_path = 'tomato_disease_modelv2.h5'
+    # 'compile=False' itti dabaluun dogoggora 'TypeError' sana siif fura
+    return tf.keras.models.load_model(model_path, compile=False)
 
 model = load_my_model()
 
