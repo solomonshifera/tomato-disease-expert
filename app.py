@@ -9,13 +9,12 @@ st.set_page_config(page_title="Tomato Health AI", layout="centered")
 # 1. Load the Model
 @st.cache_resource
 def load_my_model():
-    # Make sure this name matches your file on GitHub exactly
+    # Maqaan kun file GitHub irratti jiruun tokko ta'uu qaba
     return tf.keras.models.load_model('tomato_disease_modelv2.h5')
 
 model = load_my_model()
 
 # 2. Define the Disease Names (Labels)
-# Ensure these match the 10 classes in your TRAINING folder
 class_labels = [
     'Bacterial_spot', 'Early_blight', 'Late_blight', 'Leaf_Mold', 
     'Septoria_leaf_spot', 'Spider_mites Two-spotted_spider_mite', 
@@ -30,7 +29,8 @@ uploaded_file = st.file_uploader("Choose a leaf image...", type=["jpg", "jpeg", 
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+    # Streamlit haaraa irratti 'use_container_width' fayyadamna
+    st.image(image, caption='Uploaded Image', use_container_width=True)
     st.write("---")
     
     with st.spinner('Analyzing...'):
